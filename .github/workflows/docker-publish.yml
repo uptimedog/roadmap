@@ -15,7 +15,7 @@ on:
 
 env:
   # Change variable to your image's name.
-  IMAGE_NAME: rq
+  IMAGE_NAME: uptimedog
 
 jobs:
   # Run tests.
