@@ -20,7 +20,7 @@ from app.shortcuts import get_config
 from app.shortcuts import Logger
 
 
-def handler404(request, exception=None, template_name="templates/guest/404.html"):
+def handler404(request, exception=None, template_name="templates/index.html"):
     """404 Error Page"""
 
     logger = Logger().get_logger(__name__)
@@ -40,7 +40,7 @@ def handler404(request, exception=None, template_name="templates/guest/404.html"
     return render(request, template_name, context, status=404)
 
 
-def handler500(request, exception=None, template_name="templates/guest/500.html"):
+def handler500(request, exception=None, template_name="templates/index.html"):
     """500 Error Page"""
 
     logger = Logger().get_logger(__name__)

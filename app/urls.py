@@ -14,13 +14,15 @@
 
 from django.urls import path
 
-from app.controllers.web.health import Health
+from app.controllers.web.home import Home
 from app.controllers.web.ready import Ready
+from app.controllers.web.health import Health
 from app.controllers.web.error import handler404 as handler404_view
 from app.controllers.web.error import handler500 as handler500_view
 
 
 urlpatterns = [
+    path('', Home.as_view(), name='app.web.home'),
     path('_health', Health.as_view(), name='app.web.health'),
     path('_ready', Ready.as_view(), name='app.web.ready'),
 ]
