@@ -5,6 +5,7 @@ PYCODESTYLE ?= pycodestyle
 FLAKE8 ?= flake8
 NPM          ?= npm
 NPX          ?= npx
+GUNICORN     ?= gunicorn
 
 
 help: Makefile
@@ -68,7 +69,7 @@ migrate:
 .PHONY: run
 run:
 	@echo "\n>> ============= Run Server ============= <<"
-	$(PYTHON) manage.py runserver
+	$(GUNICORN) --bind 0.0.0.0:8000 app.wsgi
 
 
 ## coverage: Get test coverage.
