@@ -23,5 +23,5 @@ class Ready(View, Controller):
 
     def get(self, request):
         return JsonResponse({
-            "status": "ok"
+            "status": "OK"
         })

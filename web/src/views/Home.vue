@@ -22,8 +22,8 @@
 				<b-icon pack="fas" icon="broadcast-tower" size="is-small"> </b-icon>
 				<strong
 					v-bind:class="{
-						'has-text-info': api_server_status != 'down',
-						'has-text-danger': api_server_status == 'down',
+						'has-text-info': api_server_status == 'OK',
+						'has-text-danger': api_server_status != 'OK',
 					}"
 				>
 					API Server is {{ api_server_status }}</strong
@@ -52,7 +52,7 @@ export default {
 
 	data() {
 		return {
-			api_server_status: "down",
+			api_server_status: "DOWN",
 
 			// Loader
 			loader: {

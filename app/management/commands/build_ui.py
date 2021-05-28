@@ -28,20 +28,23 @@ class Command(BaseCommand):
         """Handle the command"""
         self.stdout.write('Start Building Index Page')
 
-        self.file_system = FileSystem()
+        try:
+            self.file_system = FileSystem()
 
-        path = self.file_system.app_path("themes/default/templates/index.html")
-        content = self.file_system.read_file(path)
+            path = self.file_system.app_path("themes/default/templates/index.html")
+            content = self.file_system.read_file(path)
 
-        urls = re.findall(r'href=[\'"]?([^\'" >]+)', content)
+            urls = re.findall(r'href=[\'"]?([^\'" >]+)', content)
+            urls = list(dict.fromkeys(urls))
 
-        urls = list(dict.fromkeys(urls))
+            for url in urls:
+                if url.startswith("/static"):
+                    url = url.replace("/static/", "")
+                    content = content.replace("/static/" + url, "{% " + "static '{}'".format(url) + " %}")
 
-        for url in urls:
-            if url.startswith("/static"):
-                url = url.replace("/static/", "")
-                content = content.replace("/static/" + url, "{% " + "static '{}'".format(url) + " %}")
-
-        self.file_system.write_file(path, content)
+            self.file_system.write_file(path, content)
+        except Exception as e:
+            self.stdout.write(self.style.ERROR('Error: {}'.format(str(e))))
+            return
 
         self.stdout.write(self.style.SUCCESS('Done!'))
