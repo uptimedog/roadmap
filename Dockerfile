@@ -4,11 +4,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update
 
-# RUN apt-get update && apt-get install -y supervisor
-
 RUN pip install --upgrade pip
-
-# COPY supervisord.conf /etc/supervisor/conf.d/hippo-worker.conf
 
 RUN mkdir /app
 
